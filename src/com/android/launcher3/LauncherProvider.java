@@ -50,6 +50,7 @@ import com.android.launcher3.LauncherSettings.Favorites;
 import com.android.launcher3.compat.UserHandleCompat;
 import com.android.launcher3.compat.UserManagerCompat;
 import com.android.launcher3.config.ProviderConfig;
+import com.sprd.launcher3.ext.LogUtils;
 
 import java.io.File;
 import java.net.URISyntaxException;
@@ -59,7 +60,7 @@ import java.util.HashSet;
 
 public class LauncherProvider extends ContentProvider {
     private static final String TAG = "Launcher.LauncherProvider";
-    private static final boolean LOGD = false;
+    private static final boolean LOGD = LogUtils.DEBUG;
 
     private static final int DATABASE_VERSION = 20;
 

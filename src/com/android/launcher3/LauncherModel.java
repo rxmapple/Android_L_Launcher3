@@ -59,6 +59,7 @@ import com.android.launcher3.compat.PackageInstallerCompat;
 import com.android.launcher3.compat.PackageInstallerCompat.PackageInstallInfo;
 import com.android.launcher3.compat.UserHandleCompat;
 import com.android.launcher3.compat.UserManagerCompat;
+import com.sprd.launcher3.ext.LogUtils;
 
 import java.lang.ref.WeakReference;
 import java.net.URISyntaxException;
@@ -84,8 +85,8 @@ import java.util.TreeMap;
  */
 public class LauncherModel extends BroadcastReceiver
         implements LauncherAppsCompat.OnAppsChangedCallbackCompat {
-    static final boolean DEBUG_LOADERS = false;
-    private static final boolean DEBUG_RECEIVER = false;
+    static final boolean DEBUG_LOADERS = LogUtils.DEBUG_LOADER;
+    private static final boolean DEBUG_RECEIVER = LogUtils.DEBUG_RECEIVER;
     private static final boolean REMOVE_UNRESTORED_ICONS = true;
     private static final boolean ADD_MANAGED_PROFILE_SHORTCUTS = false;
 

@@ -37,6 +37,7 @@ import android.util.Patterns;
 
 import com.android.launcher3.LauncherProvider.SqlArguments;
 import com.android.launcher3.LauncherSettings.Favorites;
+import com.sprd.launcher3.ext.LogUtils;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -50,7 +51,7 @@ import java.util.HashMap;
  */
 public class AutoInstallsLayout {
     private static final String TAG = "AutoInstalls";
-    private static final boolean LOGD = false;
+    private static final boolean LOGD = LogUtils.DEBUG;
 
     /** Marker action used to discover a package which defines launcher customization */
     static final String ACTION_LAUNCHER_CUSTOMIZATION =
