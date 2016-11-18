@@ -39,10 +39,11 @@ LOCAL_PROTOC_FLAGS := --proto_path=$(LOCAL_PATH)/protos/
 
 LOCAL_SDK_VERSION := 21
 
-LOCAL_PACKAGE_NAME := Launcher3
+LOCAL_PACKAGE_NAME := SprdLauncher3
+LOCAL_PRIVILEGED_MODULE := true
 #LOCAL_CERTIFICATE := shared
 
-LOCAL_OVERRIDES_PACKAGES := Launcher2
+LOCAL_OVERRIDES_PACKAGES := Launcher3
 
 LOCAL_PROGUARD_FLAG_FILES := proguard.flags
 
@@ -62,7 +63,7 @@ LOCAL_PROTOC_OPTIMIZE_TYPE := nano
 LOCAL_PROTOC_FLAGS := --proto_path=$(LOCAL_PATH)/protos/
 
 LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE := launcher_protoutil_lib
+LOCAL_MODULE := launcher_protoutil_lib3
 LOCAL_IS_HOST_MODULE := true
 LOCAL_JAR_MANIFEST := util/etc/manifest.txt
 LOCAL_STATIC_JAVA_LIBRARIES := host-libprotobuf-java-2.3.0-nano
@@ -76,7 +77,7 @@ include $(CLEAR_VARS)
 LOCAL_IS_HOST_MODULE := true
 LOCAL_MODULE_CLASS := EXECUTABLES
 LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE := launcher_protoutil
+LOCAL_MODULE := launcher_protoutil3
 
 include $(BUILD_SYSTEM)/base_rules.mk
 

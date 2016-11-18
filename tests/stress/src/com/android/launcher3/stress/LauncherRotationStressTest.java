@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package com.android.launcher3.stress;
+package com.android.sprdlauncher3.stress;
 
 
-import com.android.launcher3.Launcher;
+import com.android.sprdlauncher3.Launcher;
 
 import android.content.pm.ActivityInfo;
 import android.os.SystemClock;
