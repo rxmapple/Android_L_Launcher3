@@ -99,7 +99,6 @@ public final class Utilities {
     }
 
     public static boolean isRotationEnabled(Context c) {
-        Log.d("ssss","sForceEnableRotation:"+sForceEnableRotation+" allow_rotation:"+c.getResources().getBoolean(R.bool.allow_rotation));
         boolean enableRotation = sForceEnableRotation ||
                 c.getResources().getBoolean(R.bool.allow_rotation);
         return true;//enableRotation;

@@ -49,7 +49,7 @@ public final class LogUtils {
             DEBUG = SystemProperties.getBoolean(PROP_DEBUG, !Build.TYPE.equals("user"));
             DEBUG_LOADER = SystemProperties.getBoolean(PROP_DEBUG_LOADER, false);
             DEBUG_WIDGET = SystemProperties.getBoolean(PROP_DEBUG_WIDGET, false);
-            DEBUG_WIDGET = SystemProperties.getBoolean(PROP_DEBUG_RECEIVER, false);
+            DEBUG_RECEIVER = SystemProperties.getBoolean(PROP_DEBUG_RECEIVER, false);
             DEBUG_RESUME_TIME = SystemProperties.getBoolean(PROP_DEBUG_RESUME_TIME, false);
             DEBUG_DUMP_LOG = SystemProperties.getBoolean(PROP_DEBUG_DUMP_LOG, false);
             DEBUG_UNREAD = SystemProperties.getBoolean(PROP_DEBUG_UNREAD, false);
