@@ -37,7 +37,7 @@ import android.util.Patterns;
 
 import com.android.sprdlauncher3.LauncherProvider.SqlArguments;
 import com.android.sprdlauncher3.LauncherSettings.Favorites;
-import com.sprd.launcher3.ext.LogUtils;
+import com.sprd.sprdlauncher3.ext.LogUtils;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;

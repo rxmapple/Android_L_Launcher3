@@ -106,7 +106,9 @@ import com.android.sprdlauncher3.compat.PackageInstallerCompat;
 import com.android.sprdlauncher3.compat.PackageInstallerCompat.PackageInstallInfo;
 import com.android.sprdlauncher3.compat.UserHandleCompat;
 import com.android.sprdlauncher3.compat.UserManagerCompat;
-import com.sprd.launcher3.ext.LogUtils;
+import com.sprd.sprdlauncher3.ext.FeatureOption;
+import com.sprd.sprdlauncher3.ext.LogUtils;
+import com.sprd.sprdlauncher3.ext.SprdSettingsActivity;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -490,6 +492,25 @@ public class Launcher extends Activity
             showFirstRunClings();
         }
     }
+
+    //SPRD add for SPRD_SETTINGS_ACTIVITY_SUPPORT start {
+    @Override
+    public void onSettingsChanged(String settings, Object value) {
+        LogUtils.d(TAG,"onSprdSettingsChanged:"+settings+" value:"+value);
+        //ToDo: what you want
+    }
+
+
+//    @Override
+//    public void onSettingsChanged(String settings, boolean value) {
+//        if (Utilities.ALLOW_ROTATION_PREFERENCE_KEY.equals(settings)) {
+//            mRotationEnabled = value;
+//            if (!waitUntilResume(mUpdateOrientationRunnable, true)) {
+//                mUpdateOrientationRunnable.run();
+//            }
+//        }
+//    }
+    //end }
 
     private LauncherCallbacks mLauncherCallbacks;
 
@@ -1188,8 +1209,9 @@ public class Launcher extends Activity
     protected boolean hasSettings() {
         if (mLauncherCallbacks != null) {
             return mLauncherCallbacks.hasSettings();
+        }else{
+            return FeatureOption.SPRD_SETTINGS_ACTIVITY_SUPPORT;
         }
-        return false;
     }
 
 
@@ -2821,6 +2843,12 @@ public class Launcher extends Activity
         if (LOGD) Log.d(TAG, "onClickSettingsButton");
         if (mLauncherCallbacks != null) {
             mLauncherCallbacks.onClickSettingsButton(v);
+        } else {
+            //SPRD add for SPRD_SETTINGS_ACTIVITY_SUPPORT start {
+            if(FeatureOption.SPRD_SETTINGS_ACTIVITY_SUPPORT){
+                startActivity(new Intent(this, SprdSettingsActivity.class));
+            }
+            //end }
         }
     }
 

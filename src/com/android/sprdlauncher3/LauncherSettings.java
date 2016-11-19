@@ -19,10 +19,12 @@ package com.android.sprdlauncher3;
 import android.net.Uri;
 import android.provider.BaseColumns;
 
+import com.android.sprdlauncher3.config.ProviderConfig;
+
 /**
  * Settings related utilities.
  */
-class LauncherSettings {
+public class LauncherSettings {
     /** Columns required on table staht will be subject to backup and restore. */
     static interface ChangeLogColumns extends BaseColumns {
         /**
@@ -298,4 +300,24 @@ class LauncherSettings {
          */
         static final String RESTORED = "restored";
     }
+
+    //SPRD add for SPRD_SETTINGS_ACTIVITY_SUPPORT start {
+    /**
+     * Launcher settings
+     */
+    public static final class Settings {
+
+        public static final Uri CONTENT_URI = Uri.parse("content://" +
+                ProviderConfig.AUTHORITY + "/settings");
+
+        public static final String METHOD_GET_BOOLEAN = "get_boolean_setting";
+        public static final String METHOD_SET_BOOLEAN = "set_boolean_setting";
+
+        public static final String METHOD_GET_STRING = "get_string_setting";
+        public static final String METHOD_SET_STRING = "set_string_setting";
+
+        public static final String EXTRA_VALUE = "value";
+        public static final String EXTRA_DEFAULT_VALUE = "default_value";
+    }
+    //end }
 }

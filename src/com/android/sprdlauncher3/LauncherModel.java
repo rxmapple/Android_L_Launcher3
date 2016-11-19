@@ -58,7 +58,7 @@ import com.android.sprdlauncher3.compat.PackageInstallerCompat;
 import com.android.sprdlauncher3.compat.PackageInstallerCompat.PackageInstallInfo;
 import com.android.sprdlauncher3.compat.UserHandleCompat;
 import com.android.sprdlauncher3.compat.UserManagerCompat;
-import com.sprd.launcher3.ext.LogUtils;
+import com.sprd.sprdlauncher3.ext.LogUtils;
 
 import java.lang.ref.WeakReference;
 import java.net.URISyntaxException;

@@ -40,6 +40,9 @@ import android.database.sqlite.SQLiteStatement;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Binder;
+import android.os.Bundle;
+import android.os.Process;
 import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
@@ -50,7 +53,7 @@ import com.android.sprdlauncher3.LauncherSettings.Favorites;
 import com.android.sprdlauncher3.compat.UserHandleCompat;
 import com.android.sprdlauncher3.compat.UserManagerCompat;
 import com.android.sprdlauncher3.config.ProviderConfig;
-import com.sprd.launcher3.ext.LogUtils;
+import com.sprd.sprdlauncher3.ext.LogUtils;
 
 import java.io.File;
 import java.net.URISyntaxException;
@@ -228,6 +231,61 @@ public class LauncherProvider extends ContentProvider {
         if (count > 0) sendNotify(uri);
 
         return count;
+    }
+
+    @Override
+    public Bundle call(String method, String arg, Bundle extras) {
+        if (Binder.getCallingUid() != Process.myUid()) {
+            return null;
+        }
+
+        switch (method) {
+            case LauncherSettings.Settings.METHOD_GET_BOOLEAN: {
+                Bundle result = new Bundle();
+                result.putBoolean(LauncherSettings.Settings.EXTRA_VALUE,
+                        getContext().getSharedPreferences(
+                                LauncherAppState.getSharedPreferencesKey(), Context.MODE_PRIVATE)
+                                .getBoolean(arg, extras.getBoolean(
+                                        LauncherSettings.Settings.EXTRA_DEFAULT_VALUE)));
+                return result;
+            }
+            case LauncherSettings.Settings.METHOD_SET_BOOLEAN: {
+                boolean value = extras.getBoolean(LauncherSettings.Settings.EXTRA_VALUE);
+                getContext().getSharedPreferences(
+                        LauncherAppState.getSharedPreferencesKey(), Context.MODE_PRIVATE)
+                        .edit().putBoolean(arg, value).apply();
+                if (mListener != null) {
+                    mListener.onSettingsChanged(arg, value);
+                }
+                Bundle result = new Bundle();
+                result.putBoolean(LauncherSettings.Settings.EXTRA_VALUE, value);
+                return result;
+            }
+            //SPRD add for SPRD_SETTINGS_ACTIVITY_SUPPORT start {
+            case LauncherSettings.Settings.METHOD_GET_STRING:{
+                Bundle result = new Bundle();
+                result.putString(LauncherSettings.Settings.EXTRA_VALUE,
+                        getContext().getSharedPreferences(
+                                LauncherAppState.getSharedPreferencesKey(), Context.MODE_PRIVATE)
+                                .getString(arg, extras.getString(
+                                        LauncherSettings.Settings.EXTRA_DEFAULT_VALUE)));
+                return result;
+            }
+            case LauncherSettings.Settings.METHOD_SET_STRING:{
+                String value = extras.getString(LauncherSettings.Settings.EXTRA_VALUE);
+                getContext().getSharedPreferences(
+                        LauncherAppState.getSharedPreferencesKey(), Context.MODE_PRIVATE)
+                        .edit().putString(arg, value).apply();
+                if (mListener != null) {
+                    mListener.onSettingsChanged(arg, value);
+                }
+                Bundle result = new Bundle();
+                result.putString(LauncherSettings.Settings.EXTRA_VALUE, value);
+                return result;
+            }
+            //end }
+        }
+        return null;
     }
 
     private void sendNotify(Uri uri) {

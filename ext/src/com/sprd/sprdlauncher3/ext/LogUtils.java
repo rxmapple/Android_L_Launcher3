@@ -1,4 +1,4 @@
-package com.sprd.launcher3.ext;
+package com.sprd.sprdlauncher3.ext;
 
 import android.os.Build;
 import android.os.SystemProperties;
